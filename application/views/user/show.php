@@ -3,7 +3,8 @@
     <h2>List users</h2>
     
     <!--Link create user-->
-    <a href="<?php echo base_url()."index.php/user/create";?>">Create</a>
+    <a href="<?php echo base_url()."index.php/user/create";?>">Create</a> | 
+    <a href="<?php echo base_url()."index.php/user/login";?>">Login</a>
     
     <!--Show list user-->
     <table border="1">
@@ -30,5 +31,6 @@
             <?php } ?>
         </tbody>
     </table>
+
 
 </center>

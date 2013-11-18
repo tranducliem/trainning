@@ -10,6 +10,7 @@ class User extends CI_Controller
 		parent::__construct();
 		$this->load->model('user_m');
 		$this->load->library('form_validation');
+		$this->lang->load('login', 'english');
 	}
 
 	public function index()
@@ -74,6 +75,43 @@ class User extends CI_Controller
 		}
 		$this->_data['user'] = $this->user_m->getById($id);
 		$this->load->view('user/update',$this->_data);
+	}
+
+	public function login()
+	{
+		if($this->input->post("btnLogin"))
+		{
+			$user = array(
+				'username' => $this->input->post('username'),
+				'password' => $this->input->post('password')
+			);
+			if($this->user_m->check_login($user))
+			{
+				$this->session->set_userdata($user);
+				redirect(base_url()."index.php/user/login_success");
+			}
+			else
+			{
+				echo "Please check login";
+			}
+		}
+		$this->load->view('user/login');
+	}
+
+	public function login_success()
+	{
+		$this->session->set_flashdata('status','Login success!');
+		echo $this->lang->line('username').$this->session->userdata['username'];
+    	echo "<br/>";
+    	echo $this->lang->line('password').$this->session->userdata['password'];
+    	echo "<br/>";
+    	echo '<a href="'.base_url().'index.php/user/logout">Logout</a>';
+	}
+
+	public function logout()
+	{
+		$this->session->sess_destroy();
+		redirect(base_url());
 	}
 }
 
