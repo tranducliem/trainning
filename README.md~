@@ -1,4 +1,4 @@
-# PyroCMS Community Edition
+# Trainning Project
 
 [![Build Status](https://travis-ci.org/pyrocms/pyrocms.png?branch=2.2/master)](https://travis-ci.org/pyrocms/pyrocms)
 
